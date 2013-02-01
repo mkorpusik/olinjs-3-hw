@@ -2,7 +2,7 @@ $(function () {
   $('#newform').on('submit', function () {
   	$( "input" ).each(function( index ) {
       if ('checkbox:checked')
-      	alert('checked');
+      	console.log('checked');
     });
     $.post("/order/new", $('#newform').serialize());
 
