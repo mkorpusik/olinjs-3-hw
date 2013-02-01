@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  form(action="/ingredient/create", method="post")
+    p= title
+    | Ingredient Name
+    input(name="name")
+    | Cost
+    input(name="cost")
+    input(type="submit", value="Submit")

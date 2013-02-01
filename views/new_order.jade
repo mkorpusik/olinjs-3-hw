@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  form()
+    h1= title
+    div
+    each ingredient, i in ingredients
+      input(type="checkbox") 
+      | #{ingredient.name}
+      br
+    input(type="submit", value="Submit Order")
