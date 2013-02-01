@@ -22,6 +22,7 @@ exports.create = function(req, res){
 
 exports.create_order = function(req, res){
   console.log("You created an order!");
+  console.log(req.body);
   var order = new Order({ });
   order.save(function (err) {
     if (err)
