@@ -5,7 +5,7 @@ block content
     h1= title
     div
     each ingredient, i in ingredients
-      input(type="checkbox") 
+      input(type="checkbox", name="ingredient", value=ingredient._id, class="ingredients") 
       | #{ingredient.name}
       br
     input(type="submit", value="Submit Order")

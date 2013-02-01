@@ -23,7 +23,7 @@ exports.create = function(req, res){
 exports.create_order = function(req, res){
   console.log("You created an order!");
   console.log(req.body);
-  var order = new Order({ });
+  var order = new Order({ingredients:req.body.ingredient});
   order.save(function (err) {
     if (err)
       return console.log("error we couldn't save order");
@@ -40,5 +40,25 @@ exports.order = function(req, res){
       return console.log("error", ingredients);
     // send it back
     res.render("new_order",{ingredients: docs, title:'Create your order!'});
+  });
+};
+
+exports.delete_order = function(req, res){
+  console.log("deleting order");
+  console.log(req.body);
+  // remove order
+  Order.remove({'_id': req.body._id}, function (err) {
+    if (err) return handleError(err);
+    res.redirect('/orders');
+  });
+};
+
+exports.orders = function(req, res){
+  console.log("list of pending orders");
+  var orders = Order.find({}, function (err, docs) {
+    if (err)
+      return console.log("error", orders);
+    // send it back
+    res.render("orders",{orders: docs, title:'Pending Orders'});
   });
 };

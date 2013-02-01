@@ -1,11 +1,14 @@
-$(function () {
+$(document).ready(function (){
   $('#newform').on('submit', function () {
-  	$( "input" ).each(function( index ) {
-      if ('checkbox:checked')
-      	console.log('checked');
-    });
     $.post("/order/new", $('#newform').serialize());
 
     return false;
   })
+
+  $('#ordersform').on('submit', function () {
+    $.post("/orders", $('#ordersform').serialize());
+    console.log('completing order');
+    return false;
+  })
+  
 })
