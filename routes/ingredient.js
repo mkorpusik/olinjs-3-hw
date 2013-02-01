@@ -20,6 +20,18 @@ exports.create = function(req, res){
 
 };
 
+exports.create_order = function(req, res){
+  console.log("You created an order!");
+  var order = new Order({ });
+  order.save(function (err) {
+    if (err)
+      return console.log("error we couldn't save order");
+    // redirect to new order page
+    res.redirect('/order/new');
+  });
+
+};
+
 exports.order = function(req, res){
   console.log("create an order");
   var ingredients = Ingredient.find({}, function (err, docs) {

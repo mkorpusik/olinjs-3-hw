@@ -15,5 +15,5 @@ var orderSchema = mongoose.Schema({
 
 var Order = mongoose.model('Order', orderSchema);
 
-module.exports = Ingredient;
-module.exports = Order;
+module.exports.Ingredient = Ingredient;
+module.exports.Order = Order;
