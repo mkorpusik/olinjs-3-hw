@@ -1,9 +1,13 @@
 extends layout
 
 block content
-  form(id="ordersform")
+  form(id="complete_order")
     h1= title
     div
     each order, i in orders
-      | #{order.ingredients}
-      input(type="submit", value="Complete")
+      ul(id=order._id)
+        each ingredient, i in order.ingredients
+          li
+            div #{ingredient.name}
+        button(type="submit", name="order", value=order._id, class="complete")
+          | Completed

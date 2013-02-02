@@ -28,7 +28,7 @@ exports.create_order = function(req, res){
     if (err)
       return console.log("error we couldn't save order");
     // redirect to new order page
-    res.redirect('/order/new');
+    //res.redirect('/order/new');
   });
 
 };
@@ -45,20 +45,22 @@ exports.order = function(req, res){
 
 exports.delete_order = function(req, res){
   console.log("deleting order");
-  console.log(req.body);
+  console.log(req.body.order);
   // remove order
-  Order.remove({'_id': req.body._id}, function (err) {
-    if (err) return handleError(err);
-    res.redirect('/orders');
+  Order.remove({'_id': req.body.order}).exec(
+    function (err) {
+      if (err) return handleError(err);
+      res.send('check');
   });
 };
 
 exports.orders = function(req, res){
   console.log("list of pending orders");
-  var orders = Order.find({}, function (err, docs) {
+  var orders = Order.find({}).populate('ingredients').exec(function (err, docs) {
+    //console.log(docs);
     if (err)
       return console.log("error", orders);
     // send it back
-    res.render("orders",{orders: docs, title:'Pending Orders'});
+    res.render("orders",{orders: docs, title:'Pending Burger Orders'});
   });
 };

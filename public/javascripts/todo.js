@@ -3,12 +3,19 @@ $(document).ready(function (){
     $.post("/order/new", $('#newform').serialize());
 
     return false;
-  })
+  });
 
-  $('#ordersform').on('submit', function () {
-    $.post("/orders", $('#ordersform').serialize());
-    console.log('completing order');
+  $('.complete').click(function (event) {
+  	 console.log('completing order');
+  	 var target = event.target;
+  	 console.log(target.value);
+     $.post("/orders", {"order":target.value}, 
+        function(response) {
+          console.log(response);
+          $('#'+target.value).remove();
+        });
+     
     return false;
-  })
+  });
   
-})
+});

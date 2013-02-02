@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/burgers');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/burgers');
 
 var ingredientSchema = mongoose.Schema({
   name: String,
